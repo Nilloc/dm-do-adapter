@@ -212,16 +212,16 @@ module DataMapper
             # Better error message in case port is no Numeric value
             port = @options[:port].nil? ? nil : @options[:port].to_int
 
-            DataObjects::URI.new(
-              @options[:adapter],
-              @options[:user] || @options[:username],
-              @options[:password],
-              @options[:host],
-              port,
-              @options[:path] || @options[:database],
-              query,
-              @options[:fragment]
-            ).freeze
+            DataObjects::URI.new({
+              :scheme =>    @options[:adapter],
+              :user =>      @options[:user] || @options[:username],
+              :password =>  @options[:password],
+              :host =>      @options[:host],
+              :port =>      port,
+              :path =>      @options[:path] || @options[:database],
+              :query =>     query,
+              :fragment =>  @options[:fragment]
+            }).freeze
           end
       end
 
